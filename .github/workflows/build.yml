@@ -40,10 +40,6 @@ jobs:
         pip install --upgrade pip
         pip install --upgrade cython buildozer
 
-    - name: Build with Buildozer
-      run: |
-        # Force overwrite min_api to 21 in buildozer.spec
-           - name: Build with Buildozer
       run: |
         # Force add/override min_api to 21
         echo "android.min_api = 21" >> buildozer.spec
