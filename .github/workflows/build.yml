@@ -41,10 +41,11 @@ jobs:
         pip install --upgrade cython buildozer
 
     - name: Build with Buildozer
+          - name: Build with Buildozer
       run: |
-        # Force add/override min_api to 21
-        echo "android.min_api = 21" >> buildozer.spec
+        sed -i 's/android.min_api =.*/android.min_api = 21/g' buildozer.spec
         buildozer -v android debug
+        
 
     - name: Upload APK
       uses: actions/upload-artifact@v4
