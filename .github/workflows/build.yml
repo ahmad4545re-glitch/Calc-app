@@ -42,11 +42,14 @@ jobs:
 
     - name: Build with Buildozer
       run: |
+        # Force minimum API to 21 to match NDK r25b compatibility
+        sed -i 's/#android.min_api = 21/android.min_api = 21/g' buildozer.spec
         buildozer -v android debug
 
     - name: Upload APK
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v3
       with:
         name: package
         path: bin/*.apk
+        
         
