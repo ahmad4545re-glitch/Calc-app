@@ -8,6 +8,7 @@ source.include_dir =
 version = 0.1
 requirements = python3,kivy
 android.api = 33
+android.accept_sdk_license = True
 android.min_api = 21
 android.sdk = 33
 orientation = portrait
