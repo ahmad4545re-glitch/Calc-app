@@ -41,9 +41,8 @@ jobs:
         pip install --upgrade cython buildozer
 
     - name: Build with Buildozer
-          - name: Build with Buildozer
-      run: |
-        sed -i 's/android.min_api =.*/android.min_api = 21/g' buildozer.spec
+
+       sed -i 's/android.min_api =.*/android.min_api = 21/g' buildozer.spec
         buildozer -v android debug
         
 
