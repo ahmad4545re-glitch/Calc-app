@@ -40,25 +40,16 @@ jobs:
         pip install --upgrade pip
         pip install --upgrade cython buildozer
 
-      - name: Build with Buildozer
+          - name: Build with Buildozer
       run: |
-        # Purana cache aur .buildozer folder saaf karein taake nayi configuration apply ho
+        # Purana cache saaf karein
         rm -rf .buildozer
         
-        # Python script ke zariye spec file mein min_api ko 21 par set karein
-        python3 -c "
-        with open('buildozer.spec', 'r') as f:
-            lines = f.readlines()
-        with open('buildozer.spec', 'w') as f:
-            for line in lines:
-                if 'android.min_api' in line:
-                    f.write('android.min_api = 21\n')
-                else:
-                    f.write(line)
-        "
+        # Spec file mein agar min_api pehle se hai toh usay hata kar 21 set kar dein
+        sed -i '/android.min_api/d' buildozer.spec
+        sed -i '/\[app\]/a android.min_api = 21' buildozer.spec
         
         buildozer -v android debug
-        
         
         
 
