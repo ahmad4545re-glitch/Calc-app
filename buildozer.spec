@@ -3,6 +3,7 @@ title = Simple Calculator
 package.name = calc
 package.domain = org.calculator
 source.include_exts = py,png,jpg,kv,atlas
+source.dir = .
 source.include_dir = 
 version = 0.1
 requirements = python3,kivy
