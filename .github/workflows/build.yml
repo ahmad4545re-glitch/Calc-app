@@ -40,8 +40,12 @@ jobs:
         pip install --upgrade pip
         pip install --upgrade cython buildozer
 
-            - name: Build with Buildozer
+      - name: Build with Buildozer
       run: |
+        # Purana cache aur .buildozer folder saaf karein taake nayi configuration apply ho
+        rm -rf .buildozer
+        
+        # Python script ke zariye spec file mein min_api ko 21 par set karein
         python3 -c "
         with open('buildozer.spec', 'r') as f:
             lines = f.readlines()
@@ -52,7 +56,9 @@ jobs:
                 else:
                     f.write(line)
         "
+        
         buildozer -v android debug
+        
         
         
 
