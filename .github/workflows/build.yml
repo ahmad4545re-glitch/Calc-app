@@ -42,7 +42,10 @@ jobs:
 
     - name: Build with Buildozer
       run: |
-        BUILDOZER_ANDROID_MIN_API=21 buildozer -v android debug
+        # Force overwrite min_api to 21 in buildozer.spec
+        sed -i 's/# android.min_api =.*/android.min_api = 21/g' buildozer.spec
+        sed -i 's/android.min_api =.*/android.min_api = 21/g' buildozer.spec
+        buildozer -v android debug
 
     - name: Upload APK
       uses: actions/upload-artifact@v4
