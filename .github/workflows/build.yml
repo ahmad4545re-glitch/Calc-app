@@ -40,10 +40,20 @@ jobs:
         pip install --upgrade pip
         pip install --upgrade cython buildozer
 
-        - name: Build with Buildozer
+            - name: Build with Buildozer
       run: |
-        export BUILDOZER_ANDROID_MIN_API=21
+        python3 -c "
+        with open('buildozer.spec', 'r') as f:
+            lines = f.readlines()
+        with open('buildozer.spec', 'w') as f:
+            for line in lines:
+                if 'android.min_api' in line:
+                    f.write('android.min_api = 21\n')
+                else:
+                    f.write(line)
+        "
         buildozer -v android debug
+        
         
 
     - name: Upload APK
