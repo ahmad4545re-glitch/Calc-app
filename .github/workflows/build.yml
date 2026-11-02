@@ -40,17 +40,12 @@ jobs:
         pip install --upgrade pip
         pip install --upgrade cython buildozer
 
-          - name: Build with Buildozer
+        - name: Build with Buildozer
       run: |
-        # Purana cache saaf karein
         rm -rf .buildozer
-        
-        # Spec file mein agar min_api pehle se hai toh usay hata kar 21 set kar dein
-        sed -i '/android.min_api/d' buildozer.spec
-        sed -i '/\[app\]/a android.min_api = 21' buildozer.spec
-        
-        buildozer -v android debug
-        
+        sed -i 's/android.min_api = 24/android.min_api = 21/g' buildozer.spec
+        sed -i 's/android.min_api = 24/android.min_api = 21/g' buildozer.default.spec || true
+        buildozer --profile default -v android debug
         
 
     - name: Upload APK
