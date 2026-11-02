@@ -42,7 +42,7 @@ jobs:
 
     - name: Build with Buildozer
       run: |
-        buildozer --var android.min_api=21 -v android debug
+        BUILDOZER_ANDROID_MIN_API=21 buildozer -v android debug
 
     - name: Upload APK
       uses: actions/upload-artifact@v4
